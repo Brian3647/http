@@ -32,4 +32,4 @@ assert_eq!("hello world!", req.msg_body);
 
 ## Note
 
-This code is a modified version from https://github.com/peshwar9/rust-servers-services-apps/tree/master/chapter2/scenario1/http
+This code is a modified version from https://github.com/peshwar9/rust-servers-services-apps/tree/master/chapter2/scenario1/http. Almost everything is changed, but anyways thanks to @peshwar9 for the amazing rust book.  
