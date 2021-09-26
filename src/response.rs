@@ -181,7 +181,7 @@ mod tests {
 }
 
 impl<'a> HttpResponse<'a> {
-	pub fn new_from_status(
+	pub fn from_status(
 		headers: Option<HashMap<&'a str, String>>,
 		body: Option<String>,
 		status_code: &'a str,
@@ -209,116 +209,116 @@ impl<'a> HttpResponse<'a> {
 	}
 
 	pub fn _continue(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "100", "Continue")
+		Self::from_status(headers, body, "100", "Continue")
 	}
 
 	pub fn switching_protocol(
 		headers: Option<HashMap<&'a str, String>>,
 		body: Option<String>
 	) -> Self {
-		Self::new_from_status(headers, body, "101", "Switching Protocol")
+		Self::from_status(headers, body, "101", "Switching Protocol")
 	}
 
 	pub fn early_hints(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "103", "Early Hints")
+		Self::from_status(headers, body, "103", "Early Hints")
 	}
 
 	pub fn ok(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "200", "OK")
+		Self::from_status(headers, body, "200", "OK")
 	}
 
 	pub fn created(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "201", "Created")
+		Self::from_status(headers, body, "201", "Created")
 	}
 
 	pub fn accepted(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "202", "Accepted")
+		Self::from_status(headers, body, "202", "Accepted")
 	}
 
 	pub fn non_authoritative_information(
 		headers: Option<HashMap<&'a str, String>>,
 		body: Option<String>
 	) -> Self {
-		Self::new_from_status(headers, body, "203", "Non-Authoritative Information")
+		Self::from_status(headers, body, "203", "Non-Authoritative Information")
 	}
 
 	pub fn no_content(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "204", "No Content")
+		Self::from_status(headers, body, "204", "No Content")
 	}
 
 	pub fn reset_content(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "205", "Reset Content")
+		Self::from_status(headers, body, "205", "Reset Content")
 	}
 
 	pub fn partial_content(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "206", "Partial Content")
+		Self::from_status(headers, body, "206", "Partial Content")
 	}
 
 	pub fn found(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "302", "Found")
+		Self::from_status(headers, body, "302", "Found")
 	}
 
 	pub fn see_other(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "303", "See Other")
+		Self::from_status(headers, body, "303", "See Other")
 	}
 
 	pub fn not_modified(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "304", "Not Modified")
+		Self::from_status(headers, body, "304", "Not Modified")
 	}
 
 	pub fn temporary_redirect(
 		headers: Option<HashMap<&'a str, String>>,
 		body: Option<String>
 	) -> Self {
-		Self::new_from_status(headers, body, "307", "Temporary Redirect")
+		Self::from_status(headers, body, "307", "Temporary Redirect")
 	}
 
 	pub fn permanent_redirect(
 		headers: Option<HashMap<&'a str, String>>,
 		body: Option<String>
 	) -> Self {
-		Self::new_from_status(headers, body, "308", "Permanent Redirect")
+		Self::from_status(headers, body, "308", "Permanent Redirect")
 	}
 
 	pub fn bad_request(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "400", "Bad Request")
+		Self::from_status(headers, body, "400", "Bad Request")
 	}
 
 	pub fn unauthorized(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "401", "Unauthorized")
+		Self::from_status(headers, body, "401", "Unauthorized")
 	}
 
 	pub fn forbidden(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "403", "Forbidden")
+		Self::from_status(headers, body, "403", "Forbidden")
 	}
 
 	pub fn not_found(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "404", "Not Found")
+		Self::from_status(headers, body, "404", "Not Found")
 	}
 
 	pub fn method_not_allowed(
 		headers: Option<HashMap<&'a str, String>>,
 		body: Option<String>
 	) -> Self {
-		Self::new_from_status(headers, body, "405", "Method Not Allowed")
+		Self::from_status(headers, body, "405", "Method Not Allowed")
 	}
 
 	pub fn request_timeout(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "408", "Request Timeout")
+		Self::from_status(headers, body, "408", "Request Timeout")
 	}
 
 	pub fn gone(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "410", "Gone")
+		Self::from_status(headers, body, "410", "Gone")
 	}
 
 	pub fn im_a_teapot(headers: Option<HashMap<&'a str, String>>, body: Option<String>) -> Self {
-		Self::new_from_status(headers, body, "418", "I'm a teapot")
+		Self::from_status(headers, body, "418", "I'm a teapot")
 	}
 
 	pub fn internal_server_error(
 		headers: Option<HashMap<&'a str, String>>,
 		body: Option<String>
 	) -> Self {
-		Self::new_from_status(headers, body, "500", "Internal Server Error")
+		Self::from_status(headers, body, "500", "Internal Server Error")
 	}
 }
