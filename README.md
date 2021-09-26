@@ -29,3 +29,7 @@ assert_eq!(Resource::Path("/example".to_string()), req.resource);
 assert_eq!(headers_expected, req.headers);
 assert_eq!("hello world!", req.msg_body);
 ```
+
+## Note
+
+This code its a modified version from https://github.com/peshwar9/rust-servers-services-apps/tree/master/chapter2/scenario1/http
