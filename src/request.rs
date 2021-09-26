@@ -54,7 +54,7 @@ impl From<String> for HttpRequest {
 					let (key, value) = process_header_line(line);
 					parsed_headers.insert(key, value);
 				} else if line.is_empty() {
-					// Blank line. Next line will be processed as the body.
+					// Blank line. Next lines will be processed as the body.
 					in_body = true;
 				}
 			} else {

@@ -38,7 +38,7 @@ impl<'a> HttpResponse<'a> {
 			Some(_h) => headers,
 			None => {
 				let mut h: HashMap<&str, String> = HashMap::new();
-				h.insert("Content-Type", "text/html".to_string());
+				h.insert("Content-Type", "text/plain".to_string());
 				Some(h)
 			}
 		};
