@@ -1,0 +1,13 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ATiltedTree/setup-rust@v1
+      with:
+        rust-version: nightly
+    - uses: actions/checkout@v2
+    - run: cargo test
