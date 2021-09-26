@@ -36,7 +36,7 @@ pub struct HttpRequest {
 
 impl From<String> for HttpRequest {
 	fn from(req: String) -> Self {
-		let mut parsed_method = Method::Uninitialized;
+		let mut parsed_method = Method::Unknown("".into());
 		let mut parsed_version = Version::V1_1;
 		let mut parsed_resource = Resource::Path("".to_string());
 		let mut parsed_headers = HashMap::new();
@@ -113,12 +113,16 @@ pub enum Method {
 	Options,
 	Trace,
 	Patch,
-	Uninitialized
+	Unknown(String)
 }
 
 impl Display for Method {
 	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-		f.write_str(&format!("{:?}", self).to_uppercase())
+		if let Self::Unknown(m) = self {
+			f.write_str(m)
+		} else {
+			f.write_str(&format!("{:?}", self).to_uppercase())
+		}
 	}
 }
 
@@ -131,7 +135,7 @@ impl From<&str> for Method {
 			"OPTIONS" => Method::Options,
 			"TRACE" => Method::Trace,
 			"PATCH" => Method::Patch,
-			_ => Method::Uninitialized
+			_ => Method::Unknown(s.into())
 		}
 	}
 }
