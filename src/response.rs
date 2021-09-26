@@ -125,7 +125,7 @@ mod tests {
 			status_text: "OK",
 			headers: {
 				let mut h = HashMap::new();
-				h.insert("Content-Type", "text/html".to_string());
+				h.insert("Content-Type", "text/plain".to_string());
 				Some(h)
 			},
 			body: Some("Item was shipped on 21st Dec 2020".into())
@@ -148,7 +148,7 @@ mod tests {
 			status_text: "Not Found",
 			headers: {
 				let mut h = HashMap::new();
-				h.insert("Content-Type", "text/html".to_string());
+				h.insert("Content-Type", "text/plain".to_string());
 				Some(h)
 			},
 			body: Some("Item was shipped on 21st Dec 2020".into())
