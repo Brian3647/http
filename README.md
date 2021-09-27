@@ -1,4 +1,4 @@
-# s-http
+# s-http [![contributors](https://img.shields.io/github/contributors/Squioole/http)](https://github.com/Squioole/http/graphs/contributors)
 
 A (very) simple library for parsing http requests and generating responses.
 
