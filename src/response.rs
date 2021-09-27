@@ -115,11 +115,7 @@ mod tests {
 
 	#[test]
 	fn test_response_struct_creation_200() {
-		let response_actual = HttpResponse::new(
-			"200",
-			None,
-			Some("Item was shipped on 21st Dec 2020".into())
-		);
+		let response_actual = HttpResponse::ok(None, Some("Item was shipped on 21st Dec 2020".into()));
 
 		let response_expected = HttpResponse {
 			version: "HTTP/1.1",
@@ -127,7 +123,7 @@ mod tests {
 			status_text: "OK",
 			headers: {
 				let mut h = HashMap::new();
-				h.insert("Content-Type", "text/plain".to_string());
+				h.insert("Content-Type", "text/html".to_string());
 				Some(h)
 			},
 			body: Some("Item was shipped on 21st Dec 2020".into())
@@ -138,11 +134,8 @@ mod tests {
 
 	#[test]
 	fn test_response_struct_creation_404() {
-		let response_actual = HttpResponse::new(
-			"404",
-			None,
-			Some("Item was shipped on 21st Dec 2020".into())
-		);
+		let response_actual =
+			HttpResponse::not_found(None, Some("Item was shipped on 21st Dec 2020".into()));
 
 		let response_expected = HttpResponse {
 			version: "HTTP/1.1",
@@ -150,7 +143,7 @@ mod tests {
 			status_text: "Not Found",
 			headers: {
 				let mut h = HashMap::new();
-				h.insert("Content-Type", "text/plain".to_string());
+				h.insert("Content-Type", "text/html".to_string());
 				Some(h)
 			},
 			body: Some("Item was shipped on 21st Dec 2020".into())
@@ -197,7 +190,7 @@ impl<'a> HttpResponse<'a> {
 			Some(_) => headers,
 			None => {
 				let mut h: HashMap<&str, String> = HashMap::new();
-				h.insert("Content-Type", "text/plain".to_string());
+				h.insert("Content-Type", "text/html".to_string());
 				Some(h)
 			}
 		};
