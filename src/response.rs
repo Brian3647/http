@@ -3,11 +3,11 @@ use std::io::{Result, Write};
 
 #[derive(Debug, PartialEq, Clone)]
 pub struct HttpResponse<'a> {
-	version: &'a str,
-	status_code: &'a str,
-	status_text: &'a str,
+	pub version: &'a str,
+	pub status_code: &'a str,
+	pub status_text: &'a str,
 	pub headers: Option<HashMap<&'a str, String>>,
-	body: Option<String>
+	pub body: Option<String>
 }
 
 impl<'a> Default for HttpResponse<'a> {
