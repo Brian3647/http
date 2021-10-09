@@ -66,18 +66,6 @@ impl<'a> HttpResponse<'a> {
 }
 
 impl<'a> HttpResponse<'a> {
-	fn version(&self) -> &str {
-		self.version
-	}
-
-	fn status_code(&self) -> &str {
-		self.status_code
-	}
-
-	fn status_text(&self) -> &str {
-		self.status_text
-	}
-
 	fn headers(&self) -> String {
 		let map = self.headers.clone().unwrap();
 		let mut header_string: String = "".into();
@@ -87,7 +75,7 @@ impl<'a> HttpResponse<'a> {
 		header_string
 	}
 
-	pub fn body(&self) -> &str {
+	fn body(&self) -> &str {
 		match &self.body {
 			Some(b) => b.as_str(),
 			None => ""
@@ -99,9 +87,9 @@ impl<'a> From<HttpResponse<'a>> for String {
 	fn from(res: HttpResponse) -> String {
 		format!(
 			"{} {} {}\r\n{}Content-Length: {}\r\n\r\n{}",
-			&res.clone().version(),
-			&res.clone().status_code(),
-			&res.clone().status_text(),
+			&res.clone().version,
+			&res.clone().status_code,
+			&res.clone().status_text,
 			&res.clone().headers(),
 			&res.clone().body.unwrap_or_else(|| "".into()).len(),
 			&res.body()
