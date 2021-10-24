@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::fmt::Display;
 use std::io::{Result, Write};
 
 #[derive(Debug, PartialEq, Clone)]
@@ -57,21 +58,20 @@ impl<'a> HttpResponse<'a> {
 		response
 	}
 
-	pub fn send_response(&self, write_stream: &mut impl Write) -> Result<()> {
-		let res = self.clone();
-		let response_string = String::from(res);
-		let _ = write!(write_stream, "{}", response_string);
-		Ok(())
+	pub fn send_response(&self, stream: &mut impl Write) -> Result<()> {
+		write!(stream, "{}", self)
 	}
 }
 
 impl<'a> HttpResponse<'a> {
 	fn headers(&self) -> String {
-		let map = self.headers.clone().unwrap();
-		let mut header_string: String = "".into();
-		for (k, v) in map.iter() {
-			header_string = format!("{}{}:{}\r\n", header_string, k, v);
+		let map = &self.headers;
+		let mut header_string = String::new();
+
+		for (k, v) in map.as_ref().unwrap().iter() {
+			header_string += &format!("{}{}:{}\r\n", header_string, k, v);
 		}
+
 		header_string
 	}
 
@@ -84,16 +84,29 @@ impl<'a> HttpResponse<'a> {
 }
 
 impl<'a> From<HttpResponse<'a>> for String {
+	#[inline(always)]
 	fn from(res: HttpResponse) -> String {
+		String::from(&res)
+	}
+}
+
+impl<'a> From<&HttpResponse<'a>> for String {
+	fn from(res: &HttpResponse) -> String {
 		format!(
 			"{} {} {}\r\n{}Content-Length: {}\r\n\r\n{}",
-			&res.clone().version,
-			&res.clone().status_code,
-			&res.clone().status_text,
-			&res.clone().headers(),
-			&res.clone().body.unwrap_or_else(|| "".into()).len(),
-			&res.body()
+			res.version,
+			res.status_code,
+			res.status_text,
+			res.headers(),
+			res.body().len(),
+			res.body()
 		)
+	}
+}
+
+impl<'a> Display for HttpResponse<'a> {
+	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+		write!(f, "{}", String::from(self))
 	}
 }
 
