@@ -7,7 +7,7 @@ A (very) simple library for parsing http requests and generating responses.
 Add this to your `Cargo.toml` dependencies:
 
 ```
-http = { git = "https://github.com/Squioole/http" }
+http = { git = "https://github.com/Brian3647/http" }
 ```
 
 Example code:
